@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculate PIC Discount</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/libs/jquery/jquery.js"></script>
+        <script>
+            
+            function roundNumber(num, places) {
+                return Math.round(num * Math.pow(10, places)) / Math.pow(10, places);
+            }    
+            
+            function discCalc(){
+                //alert("hello");
+                var priceBefore = $("#priceBefore").val();
+                
+                var disc1 = $("#disc1").val();
+                var disc1Value = priceBefore*disc1/100;
+                var disc1Price = priceBefore -  disc1Value;       
+                $("#disc1Value").html(roundNumber(disc1Value,2));
+                $("#disc1Price").html(roundNumber(disc1Price,2));
+                   
+                var disc2 = $("#disc2").val();  //alert(disc2);
+                var disc2Value = disc1Price*disc2/100;  //alert(disc1Price);
+                var disc2Price = disc1Price - disc2Value;       
+                $("#disc2Value").html(roundNumber(disc2Value,2));
+                $("#disc2Price").html(roundNumber(disc2Price,2));                
+           
+                var disc3 = $("#disc3").val();
+                var disc3Value = disc2Price*disc3/100;
+                var disc3Price = disc2Price - disc3Value;       
+                $("#disc3Value").html(roundNumber(disc3Value,2));
+                $("#disc3Price").html(roundNumber(disc3Price,2));       
+                       
+                var disc4 = $("#disc4").val();
+                var disc4Value = disc3Price*disc4/100;
+                var disc4Price = disc3Price - disc4Value;       
+                $("#disc4Value").html(roundNumber(disc4Value,2));
+                $("#disc4Price").html(roundNumber(disc4Price,2));                      
+           
+                var disc5 = $("#disc5").val();
+                var disc5Value = disc4Price*disc5/100;
+                var disc5Price = disc4Price - disc5Value;       
+                $("#disc5Value").html(roundNumber(disc5Value,2));
+                $("#disc5Price").html(roundNumber(disc5Price,2));           
+                
+                //Sume
+                var discSumeValue = disc1Value + disc2Value + disc3Value + disc4Value + disc5Value
+                $("#discSumeValue").html(roundNumber(discSumeValue,2));
+                $("#priceAftDiscValue").html(roundNumber(disc5Price,2));
+                
+            }
+                  
+        </script>
+    
+    </head>
+    <body>
+        <div style="position: relative; left: 100px;">
+            <h3>Calculate PIC Discount:</h3>
+            
+        <form>
+            Price Before Discount:
+            <input type="number" id="priceBefore" value="0" onchange="discCalc();"/>
+            <br/><br/>    
+            
+            <table style="border: 1px solid black; width: 400px;">
+                <tr>
+                    <td>Disc</td>
+                    <td>DiscValue</td>
+                    <td>PriceAftDisc</d>
+                </tr>
+                
+                <tr>
+                    <td><input type="number" 
+                               id="disc1" 
+                               value="0" 
+                               style="width:40px;" 
+                               onchange="discCalc();"
+                               />%</td>
+                    <td><span id="disc1Value">0</span> </td>
+                    <td><span id="disc1Price">0</span> </td>
+                </tr>
+                <tr>
+                    <td><input type="number" 
+                               id="disc2" 
+                               value="0" 
+                               style="width: 40px;"
+                               onchange="discCalc();"
+                               />%</td>
+                    <td><span id="disc2Value">0</span> </td>
+                    <td><span id="disc2Price">0</span> </td>
+                </tr>
+                <tr>
+                    <td><input type="number" 
+                               id="disc3" 
+                               value="0" 
+                               style="width: 40px;"
+                               onchange="discCalc();"
+                               />%</td>
+                    <td><span id="disc3Value">0</span> </td>
+                    <td><span id="disc3Price">0</span> </td>
+                </tr>
+                <tr>
+                    <td><input type="number" 
+                               id="disc4" 
+                               value="0" 
+                               style="width: 40px;"
+                               onchange="discCalc();"
+                               />%</td>
+                    <td><span id="disc4Value">0</span> </td>
+                    <td><span id="disc4Price">0</span> </td>
+                </tr>
+                <tr>
+                    <td><input type="number" 
+                               id="disc5" 
+                               value="0" 
+                               style="width: 40px;"
+                               onchange="discCalc();"
+                               />%</td>
+                    <td><span id="disc5Value">0</span> </td>
+                    <td><span id="disc5Price">0</span> </td>
+                </tr>
+                <tr>
+                    <td>---</td>
+                    <td>---</td>
+                    <td>---</td>
+                </tr>
+                <tr>
+                    <td>Sume:</td>
+                    <td><span id="discSumeValue"></span></td>
+                    <td><span id="priceAftDiscValue"></span></td>
+                </tr>
+            </table>
+            
+            <br/><br/>
+            <input type="button" onclick="discCalc()" value="Calculate Discount" />
+        </form>
+        </div>
+    </body>
+</html>
